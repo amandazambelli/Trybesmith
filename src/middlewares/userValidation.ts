@@ -45,7 +45,7 @@ const userValidation = {
   async verifyLevel(req: Request, res: Response, next: NextFunction) {
     const { level } = req.body;
     
-    if (!level) {
+    if (level === undefined) {
       return res.status(400).json({ message: '"level" is required' });
     }
     

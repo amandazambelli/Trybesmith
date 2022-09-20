@@ -8,7 +8,7 @@ const userController = {
     await userService.create(user);
 
     const token = generateToken(user);
-    res.status(201).json(token);
+    res.status(201).json({ token });
   },
 };
 

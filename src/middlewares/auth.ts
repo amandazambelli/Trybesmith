@@ -8,11 +8,16 @@ const JWT_CONFIG:SignOptions = {
 };
 
 type UserToken = {
+  id?: number;
   username: string;
 };
 
-const generateToken = (payload: UserToken):string => {
-  const token = jwt.sign({ data: { user: payload.username } }, JWT_SECRET, JWT_CONFIG);
+const generateToken = (payload: UserToken) => {
+  const token = jwt.sign(
+    { data: { id: payload.id, user: payload.username } },
+    JWT_SECRET,
+    JWT_CONFIG,
+  );
 
   return token;
 };
