@@ -12,7 +12,7 @@ type UserToken = {
 };
 
 const generateToken = (payload: UserToken):string => {
-  const token = jwt.sign(payload.username, JWT_SECRET, JWT_CONFIG);
+  const token = jwt.sign({ data: { user: payload.username } }, JWT_SECRET, JWT_CONFIG);
 
   return token;
 };

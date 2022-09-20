@@ -1,15 +1,14 @@
 import { Router } from 'express';
 import productController from '../controllers/productController';
-import productValidation from '../middlewares/productValidation';
+import loginValidation from '../middlewares/loginValidation';
 
 const router = Router();
 
 router.post(
   '/',
-  productValidation.verifyName,
-  productValidation.verifyAmount,
+  loginValidation.verifyUsername,
+  loginValidation.verifyPassword,
   productController.create,
 );
-router.get('/', productController.getAll);
 
 export default router;

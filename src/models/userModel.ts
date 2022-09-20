@@ -14,6 +14,15 @@ const userModel = {
   
     return { id: insertId, ...user };
   },
+
+  async findByUsername(username: string) {
+    const [user] = await connection.execute<ResultSetHeader>(
+      'SELECT * FROM Trybesmith.Users WHERE username=?',
+      [username],
+    );
+  
+    return user;
+  },
 };
 
 export default userModel;
