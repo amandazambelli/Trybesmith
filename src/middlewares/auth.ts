@@ -1,13 +1,18 @@
-import Jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'suaSenhaSecreta';
 
-type UserToken = {
-  id: number;
+const JWT_CONFIG:SignOptions = {
+  expiresIn: '1d',
+  algorithm: 'HS256',
 };
 
-const generateToken = (payload: UserToken) => {
-  const token = Jwt.sign(payload, JWT_SECRET, { algorithm: 'HS256', expiresIn: '1d' });
+type UserToken = {
+  username: string;
+};
+
+const generateToken = (payload: UserToken):string => {
+  const token = jwt.sign(payload.username, JWT_SECRET, JWT_CONFIG);
 
   return token;
 };
