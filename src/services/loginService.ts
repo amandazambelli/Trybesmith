@@ -5,6 +5,10 @@ const loginService = {
   async login(user: ILogin) {
     const findUser = await userModel.findByUsername(user);
 
+    if (!findUser || findUser.password !== user.password) {
+      return undefined;
+    }
+
     return findUser;
   },
 };

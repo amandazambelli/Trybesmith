@@ -18,11 +18,11 @@ const userModel = {
 
   async findByUsername(user: ILogin) {
     const { username } = user;
-    const [result] = await connection.execute<RowDataPacket[]>(
+    const [[result]] = await connection.execute<RowDataPacket[]>(
       'SELECT * FROM Trybesmith.Users WHERE username=?',
       [username],
     );
-  
+    console.log(result);
     return result;
   },
 };

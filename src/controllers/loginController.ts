@@ -11,7 +11,7 @@ const loginController = {
       return res.status(401).json({ message: 'Username or password invalid' });
     }
     const token = generateToken(username);
-    res.status(201).json(token);
+    res.status(200).json({ token });
   },
 };
 
