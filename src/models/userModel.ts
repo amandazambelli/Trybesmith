@@ -1,4 +1,5 @@
-import { ResultSetHeader } from 'mysql2/promise';
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+import ILogin from '../Interfaces/ILogin';
 import IUser from '../Interfaces/IUser';
 import connection from './connection';
 
@@ -15,13 +16,14 @@ const userModel = {
     return { id: insertId, ...user };
   },
 
-  async findByUsername(username: string) {
-    const [user] = await connection.execute<ResultSetHeader>(
+  async findByUsername(user: ILogin) {
+    const { username } = user;
+    const [result] = await connection.execute<RowDataPacket[]>(
       'SELECT * FROM Trybesmith.Users WHERE username=?',
       [username],
     );
   
-    return user;
+    return result;
   },
 };
 

@@ -3,8 +3,9 @@ import ILogin from '../Interfaces/ILogin';
 
 const loginService = {
   async login(user: ILogin) {
-    const { username } = user;
-    await userModel.findByUsername(username);
+    const findUser = await userModel.findByUsername(user);
+
+    return findUser;
   },
 };
 

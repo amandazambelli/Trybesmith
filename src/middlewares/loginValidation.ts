@@ -8,10 +8,6 @@ const loginValidation = {
     if (!username) {
       return res.status(400).json({ message: '"username" is required' });
     }
-
-    if (typeof username !== 'string' || username.length <= 2) {
-      return res.status(401).json({ message: 'Username or password invalid' });
-    }
     
     next();
   },
