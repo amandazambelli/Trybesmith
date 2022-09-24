@@ -5,9 +5,10 @@ import generateToken from '../middlewares/auth';
 const userController = {
   async create(req: Request, res: Response) {
     const user = req.body;
-    await userService.create(user);
+    const { username } = user.username;
+    const { id } = await userService.create(user);
 
-    const token = generateToken(user);
+    const token = generateToken({ id, username });
     res.status(201).json({ token });
   },
 };

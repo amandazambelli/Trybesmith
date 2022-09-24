@@ -22,7 +22,6 @@ const userModel = {
       'SELECT * FROM Trybesmith.Users WHERE username=?',
       [username],
     );
-    console.log(result);
     return result;
   },
 };

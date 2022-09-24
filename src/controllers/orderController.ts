@@ -7,9 +7,10 @@ const orderController = {
     res.status(200).json(orders);
   },
 
-  async create(_req: Request, res: Response) {
-    const orders = await orderService.create(req.body);
-    res.status(200).json(orders);
+  async create(req: Request, res: Response) {
+    const id = req.user;
+    const newOrder = await orderService.create(id, req.body);
+    res.status(200).json({ userId: id, productsIds: newOrder });
   },
 };
 

@@ -6,6 +6,11 @@ const orderService = {
     const orders = await orderModel.getAll();
     return orders;
   },
+
+  async create(id: number, productsIds: number[]) {
+    const newOrder = await orderModel.create(id, productsIds);
+    return newOrder;
+  },
 };
 
 export default orderService;

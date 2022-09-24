@@ -1,3 +1,4 @@
+import { ResultSetHeader } from 'mysql2';
 import IOrder from '../Interfaces/IOrder';
 import connection from './connection';
 
@@ -13,6 +14,23 @@ const orderModel = {
     );
 
     return ordersData as IOrder[];
+  },
+
+  async create(id: number, productsIds: number[]) {
+    productsIds.forEach(async (product) => {
+      const [newOrder] = await connection.execute<ResultSetHeader>(
+        'INSERT INTO Trybesmith.Orders (userId) VALUES (?)',
+        [id],
+      );
+
+      const { insertId } = newOrder;
+
+      await connection.execute<ResultSetHeader>(
+        'UPDATE Trybesmith.Products SET orderId=? WHERE id=?',
+        [insertId, product],
+      );
+    });
+    return { id, productsIds };
   },
 };
 
