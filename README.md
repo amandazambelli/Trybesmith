@@ -17,15 +17,15 @@ Por meio dessa aplicação, desenvolvida seguindo um modelo de arquitetura em ca
 ## Endpoints ##
 
 Login:
-POST /login
+- POST /login
 
 Users:
-POST /users
+- POST /users
 
 Products: 
-POST /products
-GET /products
+- POST /products
+- GET /products
 
 Orders:
-POST /orders
-GET /orders
+- POST /orders
+- GET /orders
